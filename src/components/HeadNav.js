@@ -9,7 +9,7 @@ const HeadNav= ()=> {
         <Navbar.Toggle />
         <Navbar.Collapse className="justify-content-end">
           <Navbar.Text>
-            Signed in as: <a href="/home">Home</a>
+          <a href="/home">Home</a>
           </Navbar.Text>
         </Navbar.Collapse>
       </Container>
