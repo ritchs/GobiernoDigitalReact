@@ -53,10 +53,10 @@ const PokeCard = ({ data }) => {
     <>
      
      {loadingDetail=== false?
-      <Container>
+      <Container className="mx-auto" style={{marginTop:7,padding:7}}>
       <Row>
         <Col>
-          <Card style={{ width: "18rem" }}>
+          <Card className="border border-danger" style={{ width: "20rem" }}>
             <Card.Img variant="top" src={pokes.img || ""} />
             <Card.Body>
               <Card.Title>

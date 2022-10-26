@@ -2,8 +2,6 @@ import React, { useEffect, useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import usePoke from "../hook/usePoke";
 import PokeCard from "../components/PokeCard";
-import { Route, useHistory, useRouteMatch } from 'react-router-dom';
-
 const Home = () => {
   const { getPoke } = usePoke();
 
@@ -34,12 +32,27 @@ const Home = () => {
   return (
     <>
       <Container fluid className="mt-3">
-        <Row>
-          <Col xs="12" lg="4">
-            {pokes.map((item) => (
-              <PokeCard data={item} />
-            ))}
+      <Row >
+      <Col>
+        <Row  xs="12" lg="6"  >  
+        <Col  xs="12" lg="6" >
           </Col>
+        </Row>
+       
+            {pokes.map((item) => (
+            <Row className="justify-content-center g-4" xs={1} md={2}>
+              <Col xs="12" lg="4">
+                <PokeCard data={item} />
+              </Col>
+            </Row>
+            
+            ))}
+     
+        <Row>
+          <Col>
+          </Col>
+        </Row>
+        </Col>
         </Row>
       </Container>
     </>

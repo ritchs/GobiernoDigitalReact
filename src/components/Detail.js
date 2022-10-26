@@ -50,20 +50,20 @@ const Detail = ({data}) => {
 
   return (
     <>
-      <Container>
-        <Row>
-          <Col>
+      <Container className="mx-auto" style={{marginTop:50,padding:'6.3%'}}>
+      <Row className="justify-content-center mx-auto">
+          <Col xs="12" lg="4">
         { loaddet === true  ?
-         <Card style={{ width: "18rem" }}>
-              <Row>
-                <Col>
-                  {console.log("ITEM-pokes", pokes)}
-                  <Card.Title>
+         <Card className="border  border-primary" style={{ width: "20rem" }}>
+          <Row className="justify-content-center g-4" xs={1} md={2}>
+              <Col xs="20" lg="10">
+             
+                  <Card.Title className="mx-auto" >
                     <Text
                       size="40"
                       lineHeight="100"
                       color="#fffff"
-                      className="justify-content"
+                      className="mx-auto justify-content"
                     >
                       {pokes.name || item.name}
                     </Text>

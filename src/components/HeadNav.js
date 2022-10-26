@@ -3,7 +3,7 @@ import Navbar from 'react-bootstrap/Navbar';
 
 const HeadNav= ()=> {
   return (
-    <Navbar>
+    <Navbar className="border-bottom border-danger" >
       <Container>
         <Navbar.Brand href="/">INICIO</Navbar.Brand>
         <Navbar.Toggle />
