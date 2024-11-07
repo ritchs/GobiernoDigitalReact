@@ -5,7 +5,7 @@ export default () => {
   
   const getPoke = async () => {
     
-    const response = await axios.get("https://pokeapi.co/api/v2/pokemon");
+    const response = await axios.get("https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0");
        if(response.status === 200){
        return response.data.results
        }
