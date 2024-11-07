@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
+import Form from 'react-bootstrap/Form';
+
 import usePoke from "../hook/usePoke";
 import PokeCard from "../components/PokeCard";
 const Home = () => {
@@ -11,7 +13,6 @@ const Home = () => {
 
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
-
     setLoading(true);
     setPokes([]);
 
@@ -25,34 +26,27 @@ const Home = () => {
 
     fetch();
 
+
     return () => {};
     // eslint-disable-next-line
   }, []);
 
+
+  // To set/load the initial value that is saved for the current item to edit/manage
+
+
+  // A handle change method to change the selected value/options
+ 
+
   return (
     <>
       <Container fluid className="mt-3">
-      <Row >
-      <Col>
-        <Row  xs="12" lg="6"  >  
-        <Col  xs="12" lg="6" >
-          </Col>
-        </Row>
-       
-            {pokes.map((item) => (
-            <Row className="justify-content-center g-4" xs={1} md={2}>
-              <Col xs="12" lg="4">
-                <PokeCard data={item} />
-              </Col>
-            </Row>
-            
-            ))}
-     
-        <Row>
-          <Col>
-          </Col>
-        </Row>
-        </Col>
+        <Row className="justify-content-center g-4" xs={1} md={2}>
+          {pokes.map((item) => (
+            <Col xs="12" lg="4">
+              <PokeCard data={item} />
+            </Col>
+          ))}
         </Row>
       </Container>
     </>

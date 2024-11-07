@@ -3,17 +3,19 @@ import Text from "./Text";
 import usePoke from "../hook/usePoke";
 import { Row, Col, Container, Card } from "react-bootstrap";
 import { useLocation } from "react-router-dom";
+import ListGroup from 'react-bootstrap/ListGroup';
 
 
-const Detail = ({data}) => {
+const Detail = ({ data }) => {
   const { getPokeDetail } = usePoke();
   const location = useLocation();
 
 
   // eslint-disable-next-line
   const [loading, setLoading] = useState(false);
-  const [loaddet ,setLoadDet] = useState(true);
+  const [loaddet, setLoadDet] = useState(true);
   const [pokes, setPokes] = useState([]);
+  const [spritesOther, setSpritesOther] = useState([]);
   const [item, setItem] = useState([]);
 
   useEffect(() => {
@@ -31,12 +33,20 @@ const Detail = ({data}) => {
         img: dataPokes.sprites.front_default,
         types: `${dataPokes.types[0].type.name}`,
         experience: dataPokes.base_experience,
-        height:dataPokes.height,
-        weight:dataPokes.weight,
-        order:dataPokes.order,
+        height: dataPokes.height,
+        weight: dataPokes.weight,
+        order: dataPokes.order,
       });
       setItem(dataPokes);
-      if(pokes.length>1 ){
+      console.log(dataPokes.sprites);
+      setSpritesOther({
+        dream_world: dataPokes.sprites.other.dream_world.front_default,
+        official_artwork: dataPokes.sprites.other["official-artwork"].front_default,
+        home_default: dataPokes.sprites.other.home.front_default,
+        front_shiny:dataPokes.sprites.other.home.front_shiny,
+      });
+
+      if (pokes.length > 1) {
         setLoadDet(false)
       }
       setLoading(false);
@@ -44,46 +54,33 @@ const Detail = ({data}) => {
 
     fetch();
 
-    return () => {};
+    return () => { };
     // eslint-disable-next-line
   }, []);
 
   return (
     <>
-      <Container className="mx-auto" style={{marginTop:50,padding:'6.3%'}}>
-      <Row className="justify-content-center mx-auto">
-          <Col xs="12" lg="4">
-        { loaddet === true  ?
-         <Card className="border  border-primary" style={{ width: "20rem" }}>
-          <Row className="justify-content-center g-4" xs={1} md={2}>
-              <Col xs="20" lg="10">
-             
-                  <Card.Title className="mx-auto" >
-                    <Text
-                      size="40"
-                      lineHeight="100"
-                      color="#fffff"
-                      className="mx-auto justify-content"
-                    >
-                      {pokes.name || item.name}
-                    </Text>
-                  </Card.Title>
-                  <Card.Img variant="top" src={pokes.img} />
-                  <Card.Body>
-                    <ul>
-                      <li>Experience: {pokes.base_experience}</li>
-                      <li>Height: {pokes.height}</li>
-                      <li>Weight: {pokes.weight}</li>
-                      <li>Order: {pokes.order}</li>
-                      <li>Types: {pokes.types}</li>
-                    </ul>
-                  </Card.Body>
-                </Col>
-              </Row>
+      <Container className="mx-auto" style={{ marginTop: 5, padding: '10%' }}>
+        <Row className="justify-content-center mx-auto">
+          {loaddet === true ?
+            <Card className="text-center">
+              <Card.Header> {pokes.name || item.name}</Card.Header>
+              <Card.Body className="d-flex">
+                  <Card.Img variant="top" src={spritesOther?.dream_world} /> 
+                 <Card.Img variant="top" src={spritesOther?.official_artwork} /> 
+              </Card.Body>
+              <Card.Footer >
+                <ListGroup>
+                  <ListGroup.Item>Experience: {pokes.experience}</ListGroup.Item>
+                  <ListGroup.Item>Height: {pokes.height}</ListGroup.Item>
+                  <ListGroup.Item>Weight: {pokes.weight}</ListGroup.Item>
+                  <ListGroup.Item>Order: {pokes.order}</ListGroup.Item>
+                  <ListGroup.Item>Types: {pokes.types}</ListGroup.Item>
+                </ListGroup>
+              </Card.Footer>
             </Card>
-            : <div>loading</div>
+              : <div>loading</div>
             }
-          </Col>
         </Row>
       </Container>
     </>

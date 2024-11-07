@@ -74,7 +74,7 @@ const PokeCard = ({ data }) => {
                 onClick={onHandleClick}
                 href={`/detail/${data.name}`}
               >
-                Go somewhere
+              Info
               </Button>
             </Card.Body>
           </Card>
